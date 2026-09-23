@@ -299,7 +299,7 @@ export const AuthModal = ({
             <div className="relative">
               <input
                 type="email"
-                placeholder={role === 'admin' ? 'admin@auramart.ai' : 'name@example.com'}
+                placeholder={role === 'admin' ? 'admin@ai-ecommerce.com' : 'name@example.com'}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-slate-900 text-white pl-9 pr-3 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-indigo-500 transition-colors"

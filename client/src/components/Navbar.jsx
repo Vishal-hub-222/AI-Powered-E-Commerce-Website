@@ -41,8 +41,8 @@ export const Navbar = ({
 
   return (
     <header className="sticky top-0 z-40 w-full glass-panel border-b border-slate-800/80 backdrop-blur-xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-4">
           {/* Brand Logo */}
           <div
             onClick={() => {
@@ -50,23 +50,23 @@ export const Navbar = ({
               setSearchTerm('');
               onSearch('');
             }}
-            className="flex items-center gap-2.5 cursor-pointer group select-none shrink-0"
+            className="flex items-center gap-2 sm:gap-2.5 cursor-pointer group select-none shrink-0"
           >
-            <div className="w-10 h-10 rounded-xl gradient-btn flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform duration-300">
-              <Sparkles className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl gradient-btn flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform duration-300">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
-            <div>
-              <span className="text-2xl font-extrabold tracking-tight font-display text-white">
+            <div className="flex items-baseline gap-1">
+              <span className="text-lg sm:text-2xl font-extrabold tracking-tight font-display text-white">
                 Aura<span className="gradient-text">Mart</span>
               </span>
-              <span className="ml-1 text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                AI Powered
+              <span className="hidden min-[400px]:inline-block text-[9px] sm:text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                AI
               </span>
             </div>
           </div>
 
-          {/* AI Smart Search Input */}
-          <form onSubmit={handleSearchSubmit} className="hidden md:flex flex-1 max-w-lg relative">
+          {/* AI Smart Search Input (Desktop / Tablet) */}
+          <form onSubmit={handleSearchSubmit} className="hidden md:flex flex-1 max-w-lg relative mx-2">
             <div className="relative w-full">
               <input
                 type="text"
@@ -87,24 +87,26 @@ export const Navbar = ({
           </form>
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3">
             {/* Aura AI Chat Launcher Button */}
             <button
               onClick={onOpenAiAssistant}
-              className="relative flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-950/80 to-purple-950/80 border border-indigo-500/40 text-indigo-200 hover:border-indigo-400 hover:text-white shadow-lg shadow-indigo-500/10 hover:shadow-indigo-500/25 transition-all group"
+              className="relative flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-950/80 to-purple-950/80 border border-indigo-500/40 text-indigo-200 hover:border-indigo-400 hover:text-white shadow-lg shadow-indigo-500/10 hover:shadow-indigo-500/25 transition-all group shrink-0"
+              title="Chat with Aura AI Concierge"
             >
               <div className="relative">
-                <Bot className="w-5 h-5 text-indigo-400 group-hover:rotate-12 transition-transform duration-300" />
-                <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-slate-950 animate-ping"></span>
-                <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-slate-950"></span>
+                <Bot className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-400 group-hover:rotate-12 transition-transform duration-300" />
+                <span className="absolute -top-1 -right-1 w-2 sm:w-2.5 h-2 sm:h-2.5 bg-emerald-400 rounded-full border-2 border-slate-950 animate-ping"></span>
+                <span className="absolute -top-1 -right-1 w-2 sm:w-2.5 h-2 sm:h-2.5 bg-emerald-400 rounded-full border-2 border-slate-950"></span>
               </div>
-              <span className="hidden sm:inline text-sm font-semibold">Aura AI Concierge</span>
+              <span className="hidden lg:inline text-sm font-semibold">Aura AI Concierge</span>
+              <span className="hidden sm:inline lg:hidden text-xs font-semibold">Aura AI</span>
             </button>
 
             {/* Admin Portal Trigger */}
             <button
               onClick={onOpenAdmin}
-              className={`hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl border text-xs font-bold transition-all shadow-md ${
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl border text-xs font-bold transition-all shadow-md shrink-0 ${
                 isAdmin
                   ? 'bg-emerald-950/60 hover:bg-emerald-900/80 border-emerald-500/40 text-emerald-200 hover:text-white shadow-emerald-900/20'
                   : 'bg-slate-900/80 hover:bg-slate-800 border-slate-700/80 text-slate-300 hover:text-white'
@@ -112,54 +114,56 @@ export const Navbar = ({
               title="Store Admin Management Portal"
             >
               <Shield className={`w-3.5 h-3.5 ${isAdmin ? 'text-emerald-400' : 'text-indigo-400'}`} />
-              <span>Admin Portal</span>
+              <span className="hidden sm:inline">Admin Portal</span>
             </button>
 
             {/* Orders Modal Trigger */}
             <button
               onClick={onOpenOrders}
-              className="p-2.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-300 hover:text-white transition-all"
+              className="p-2 sm:p-2.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-300 hover:text-white transition-all shrink-0"
               title="My Orders & Tracking"
+              aria-label="Orders and Tracking"
             >
-              <Package className="w-5 h-5 text-slate-300" />
+              <Package className="w-4 h-4 sm:w-5 sm:h-5 text-slate-300" />
             </button>
 
             {/* Shopping Cart Drawer Trigger */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-2.5 rounded-xl bg-indigo-600/15 hover:bg-indigo-600/25 border border-indigo-500/30 text-indigo-200 hover:text-white transition-all group"
+              className="relative p-2 sm:p-2.5 rounded-xl bg-indigo-600/15 hover:bg-indigo-600/25 border border-indigo-500/30 text-indigo-200 hover:text-white transition-all group shrink-0"
               aria-label="Shopping Cart"
             >
-              <ShoppingBag className="w-5 h-5 text-indigo-300 group-hover:scale-110 transition-transform" />
+              <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-300 group-hover:scale-110 transition-transform" />
               {totalCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-[11px] font-bold text-white flex items-center justify-center shadow-lg shadow-indigo-500/50">
+                <span className="absolute -top-1.5 -right-1.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-[10px] sm:text-[11px] font-bold text-white flex items-center justify-center shadow-lg shadow-indigo-500/50">
                   {totalCount}
                 </span>
               )}
             </button>
 
             {/* User Profile / Auth Button */}
-            <div className="relative">
+            <div className="relative shrink-0">
               {user ? (
                 <div className="relative">
                   <button
                     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                    className="flex items-center gap-2 p-1.5 pr-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-slate-200 transition-all"
+                    className="flex items-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 pr-2 sm:pr-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-slate-200 transition-all"
+                    aria-label="User profile menu"
                   >
                     <img
                       src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80'}
                       alt={user.name}
-                      className="w-7 h-7 rounded-lg object-cover ring-1 ring-indigo-500/50"
+                      className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg object-cover ring-1 ring-indigo-500/50"
                     />
-                    <span className="hidden sm:inline text-xs font-semibold max-w-[90px] truncate">
+                    <span className="hidden md:inline text-xs font-semibold max-w-[80px] truncate">
                       {user.name}
                     </span>
-                    <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+                    <ChevronDown className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-slate-400" />
                   </button>
 
                   {/* Dropdown menu */}
                   {isUserMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-56 glass-panel-glow rounded-2xl p-2 z-50 animate-fade-in shadow-2xl border border-slate-700/80">
+                    <div className="absolute right-0 top-full mt-2 w-64 max-w-[calc(100vw-24px)] glass-panel-glow rounded-2xl p-2 z-50 animate-fade-in shadow-2xl border border-slate-700/80">
                       <div className="px-3 py-2 border-b border-slate-800">
                         <p className="text-xs font-bold text-white truncate">{user.name}</p>
                         <p className="text-[11px] text-slate-400 truncate">{user.email}</p>
@@ -218,9 +222,9 @@ export const Navbar = ({
               ) : (
                 <button
                   onClick={onOpenAuth}
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 text-xs font-semibold transition-all shadow-sm"
+                  className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 text-xs font-semibold transition-all shadow-sm"
                 >
-                  <User className="w-4 h-4 text-indigo-400" />
+                  <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-400" />
                   <span>Sign In</span>
                 </button>
               )}
@@ -229,38 +233,39 @@ export const Navbar = ({
         </div>
 
         {/* Mobile Search input */}
-        <form onSubmit={handleSearchSubmit} className="md:hidden pb-4">
+        <form onSubmit={handleSearchSubmit} className="md:hidden pb-3 pt-1">
           <div className="relative w-full">
             <input
               type="text"
               placeholder="Search or ask Aura AI..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-slate-900 text-xs text-slate-100 placeholder-slate-400 pl-9 pr-20 py-2 rounded-xl border border-slate-800 focus:outline-none focus:border-indigo-500"
+              className="w-full bg-slate-900 text-xs text-slate-100 placeholder-slate-400 pl-9 pr-20 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-indigo-500 shadow-inner"
             />
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
             <button
               type="submit"
-              className="absolute right-1 top-1 px-2.5 py-1 text-[11px] font-semibold rounded-lg bg-indigo-600 text-white"
+              className="absolute right-1.5 top-1.5 px-2.5 py-1 text-[11px] font-semibold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white flex items-center gap-1 shadow-sm"
             >
-              Search
+              <Sparkles className="w-3 h-3" />
+              <span>Search</span>
             </button>
           </div>
         </form>
       </div>
 
       {/* Category Pills Bar */}
-      <div className="border-t border-slate-800/60 bg-slate-950/40 backdrop-blur-md overflow-x-auto no-scrollbar">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center gap-2">
-          <div className="flex items-center gap-1.5 text-xs text-slate-400 mr-2 font-medium shrink-0">
+      <div className="border-t border-slate-800/60 bg-slate-950/40 backdrop-blur-md overflow-x-auto no-scrollbar touch-scroll">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 sm:py-2.5 flex items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-1 text-xs text-slate-400 mr-1 sm:mr-2 font-medium shrink-0">
             <Layers className="w-3.5 h-3.5 text-indigo-400" />
-            <span>Categories:</span>
+            <span className="hidden sm:inline">Categories:</span>
           </div>
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => onSelectCategory(cat)}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-all shrink-0 ${
+              className={`px-3 py-1 sm:py-1.5 rounded-full text-xs font-semibold transition-all shrink-0 ${
                 activeCategory === cat
                   ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-md shadow-indigo-500/25'
                   : 'bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800'

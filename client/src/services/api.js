@@ -1,7 +1,7 @@
 const API_BASE = '/api';
 
 const getAuthHeader = () => {
-  const token = localStorage.getItem('auramart_token');
+  const token = localStorage.getItem('ai_ecommerce_token');
   return token ? { Authorization: `Bearer ${token}` } : {};
 };
 

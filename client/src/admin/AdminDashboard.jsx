@@ -143,7 +143,7 @@ export const AdminDashboard = ({ isOpen, onClose, onProductCreated }) => {
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-lg sm:text-xl font-extrabold font-display text-white">
-                  AuraMart Store Admin Portal
+                  AI-Powered E-Commerce Website — Admin Portal
                 </h3>
                 <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                   ⚡ Administrator

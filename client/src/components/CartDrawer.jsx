@@ -48,16 +48,16 @@ export const CartDrawer = ({ onCheckout }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-slate-950/70 backdrop-blur-sm animate-fade-in">
-      <div className="w-full max-w-md h-full glass-panel-glow border-l border-indigo-500/30 flex flex-col justify-between shadow-2xl animate-slide-left">
+      <div className="w-full sm:max-w-md h-full glass-panel-glow sm:border-l border-indigo-500/30 flex flex-col justify-between shadow-2xl animate-slide-left">
         {/* Header */}
-        <div className="p-4 sm:p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950/80">
-          <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
-              <ShoppingBag className="w-5 h-5" />
+        <div className="p-3.5 sm:p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950/80">
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+              <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <h3 className="font-bold text-white text-base font-display">Shopping Bag</h3>
-              <p className="text-xs text-slate-400">
+              <h3 className="font-bold text-white text-sm sm:text-base font-display">Shopping Bag</h3>
+              <p className="text-[11px] sm:text-xs text-slate-400">
                 {cartItems.length} {cartItems.length === 1 ? 'item' : 'items'} in your cart
               </p>
             </div>
@@ -65,24 +65,25 @@ export const CartDrawer = ({ onCheckout }) => {
 
           <button
             onClick={() => setIsCartOpen(false)}
-            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            aria-label="Close cart"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Free Shipping Progress Indicator */}
-        <div className="px-5 py-3 bg-indigo-950/30 border-b border-indigo-500/20">
-          <div className="flex items-center justify-between text-xs mb-1.5">
+        <div className="px-3.5 sm:px-5 py-2.5 sm:py-3 bg-indigo-950/30 border-b border-indigo-500/20">
+          <div className="flex items-center justify-between text-[11px] sm:text-xs mb-1.5">
             <span className="text-slate-300 flex items-center gap-1.5">
-              <Truck className="w-3.5 h-3.5 text-indigo-400" />
+              <Truck className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
               {amountNeededForFreeShipping === 0 ? (
                 <span className="text-emerald-400 font-bold">🎉 You unlocked Free Express Shipping!</span>
               ) : (
                 <span>Add <strong>${amountNeededForFreeShipping}</strong> more for <strong>Free Shipping</strong></span>
               )}
             </span>
-            <span className="text-[11px] font-bold text-indigo-300">{progressToFreeShipping}%</span>
+            <span className="text-[10px] sm:text-[11px] font-bold text-indigo-300 shrink-0 ml-2">{progressToFreeShipping}%</span>
           </div>
           <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
             <div
@@ -93,7 +94,7 @@ export const CartDrawer = ({ onCheckout }) => {
         </div>
 
         {/* Cart Item List */}
-        <div className="flex-1 p-4 sm:p-5 overflow-y-auto space-y-3">
+        <div className="flex-1 p-3 sm:p-5 overflow-y-auto space-y-2.5 sm:space-y-3">
           {cartItems.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center space-y-3 p-6">
               <div className="w-16 h-16 rounded-3xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-600">
@@ -173,13 +174,13 @@ export const CartDrawer = ({ onCheckout }) => {
 
         {/* Footer with Calculations */}
         {cartItems.length > 0 && (
-          <div className="p-4 sm:p-5 border-t border-slate-800 bg-slate-950/95 space-y-4">
+          <div className="p-3.5 sm:p-5 border-t border-slate-800 bg-slate-950/95 space-y-3 sm:space-y-4">
             {/* Promo Code Input */}
             <form onSubmit={handleApplyCoupon} className="flex gap-2">
               <div className="relative flex-1">
                 <input
                   type="text"
-                  placeholder="Promo code (Try 'AI20')"
+                  placeholder="Promo code (e.g. 'AI20')"
                   value={inputCode}
                   onChange={(e) => setInputCode(e.target.value)}
                   className="w-full bg-slate-900 text-xs text-slate-200 placeholder-slate-500 px-3 py-2 rounded-xl border border-slate-800 uppercase focus:outline-none focus:border-indigo-500"
@@ -188,7 +189,7 @@ export const CartDrawer = ({ onCheckout }) => {
               </div>
               <button
                 type="submit"
-                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 border border-slate-700 transition-all"
+                className="px-3.5 sm:px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 border border-slate-700 transition-all shrink-0"
               >
                 Apply
               </button>
@@ -233,7 +234,7 @@ export const CartDrawer = ({ onCheckout }) => {
                 setIsCartOpen(false);
                 onCheckout();
               }}
-              className="w-full gradient-btn py-3.5 rounded-xl text-white font-bold text-sm flex items-center justify-center gap-2 shadow-xl shadow-indigo-600/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
+              className="w-full gradient-btn py-3 sm:py-3.5 rounded-xl text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xl shadow-indigo-600/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               <span>Proceed to Checkout</span>
               <ArrowRight className="w-4 h-4" />

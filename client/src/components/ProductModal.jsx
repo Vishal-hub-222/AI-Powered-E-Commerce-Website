@@ -94,22 +94,23 @@ export const ProductModal = ({ product, isOpen, onClose }) => {
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-slate-950/80 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-4xl glass-panel-glow rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto bg-slate-950/80 backdrop-blur-md animate-fade-in">
+      <div className="relative w-full max-w-4xl glass-panel-glow rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl my-2 sm:my-8">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition-colors"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 p-2 rounded-full bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition-colors"
+          aria-label="Close modal"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 max-h-[85vh] overflow-y-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 max-h-[88vh] sm:max-h-[85vh] overflow-y-auto">
           {/* Left Column: Image Gallery */}
-          <div className="p-6 md:p-8 bg-slate-950/50 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-800">
+          <div className="p-4 sm:p-6 md:p-8 bg-slate-950/50 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-800">
             <div>
               {/* Main Image */}
-              <div className="aspect-square w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 relative mb-4">
+              <div className="aspect-square w-full rounded-xl sm:rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 relative mb-3 sm:mb-4">
                 <img
                   src={images[selectedImage]?.url}
                   alt={images[selectedImage]?.alt || product.name}
@@ -124,12 +125,12 @@ export const ProductModal = ({ product, isOpen, onClose }) => {
 
               {/* Thumbnails */}
               {images.length > 1 && (
-                <div className="flex gap-2.5 overflow-x-auto pb-2">
+                <div className="flex gap-2 sm:gap-2.5 overflow-x-auto pb-2 no-scrollbar touch-scroll">
                   {images.map((img, idx) => (
                     <button
                       key={idx}
                       onClick={() => setSelectedImage(idx)}
-                      className={`w-16 h-16 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${
+                      className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${
                         selectedImage === idx ? 'border-indigo-500 scale-105' : 'border-slate-800 opacity-60 hover:opacity-100'
                       }`}
                     >
@@ -141,53 +142,53 @@ export const ProductModal = ({ product, isOpen, onClose }) => {
             </div>
 
             {/* Guarantee badges */}
-            <div className="pt-6 border-t border-slate-800/80 grid grid-cols-3 gap-2 text-center text-[11px] text-slate-400">
-              <div className="flex flex-col items-center gap-1 p-2 rounded-xl bg-slate-900/60">
-                <Truck className="w-4 h-4 text-indigo-400" />
-                <span>Free Express Shipping</span>
+            <div className="pt-4 sm:pt-6 border-t border-slate-800/80 grid grid-cols-3 gap-1.5 sm:gap-2 text-center text-[10px] sm:text-[11px] text-slate-400">
+              <div className="flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-xl bg-slate-900/60">
+                <Truck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-400" />
+                <span className="leading-tight">Free Express Shipping</span>
               </div>
-              <div className="flex flex-col items-center gap-1 p-2 rounded-xl bg-slate-900/60">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>2-Year Warranty</span>
+              <div className="flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-xl bg-slate-900/60">
+                <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
+                <span className="leading-tight">2-Year Warranty</span>
               </div>
-              <div className="flex flex-col items-center gap-1 p-2 rounded-xl bg-slate-900/60">
-                <RotateCcw className="w-4 h-4 text-purple-400" />
-                <span>30-Day Returns</span>
+              <div className="flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-xl bg-slate-900/60">
+                <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400" />
+                <span className="leading-tight">30-Day Returns</span>
               </div>
             </div>
           </div>
 
           {/* Right Column: Details & Tabs */}
-          <div className="p-6 md:p-8 flex flex-col justify-between space-y-6">
+          <div className="p-4 sm:p-6 md:p-8 flex flex-col justify-between space-y-4 sm:space-y-6">
             <div>
               {/* Category & Rating */}
               <div className="flex items-center justify-between text-xs mb-2">
-                <span className="font-bold text-indigo-400 uppercase tracking-widest text-[10px]">
+                <span className="font-bold text-indigo-400 uppercase tracking-widest text-[9px] sm:text-[10px]">
                   {product.category}
                 </span>
                 <div className="flex items-center gap-1 text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
                   <Star className="w-3.5 h-3.5 fill-amber-400" />
                   <span className="font-bold">{product.rating || 4.8}</span>
-                  <span className="text-slate-400 text-[10px]">({product.numReviews || reviews.length} reviews)</span>
+                  <span className="text-slate-400 text-[10px]">({product.numReviews || reviews.length})</span>
                 </div>
               </div>
 
               {/* Title */}
-              <h2 className="text-xl sm:text-2xl font-bold font-display text-white mb-3">
+              <h2 className="text-lg sm:text-2xl font-bold font-display text-white mb-2 sm:mb-3">
                 {product.name}
               </h2>
 
               {/* Pricing */}
-              <div className="flex items-baseline gap-3 mb-4">
-                <span className="text-3xl font-extrabold text-white font-display">
+              <div className="flex items-baseline gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <span className="text-2xl sm:text-3xl font-extrabold text-white font-display">
                   ${product.price}
                 </span>
                 {product.originalPrice && product.originalPrice > product.price && (
                   <>
-                    <span className="text-base text-slate-500 line-through">
+                    <span className="text-sm sm:text-base text-slate-500 line-through">
                       ${product.originalPrice}
                     </span>
-                    <span className="text-xs font-bold text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded-full border border-rose-500/20">
+                    <span className="text-[10px] sm:text-xs font-bold text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded-full border border-rose-500/20">
                       Save ${(product.originalPrice - product.price).toFixed(0)}
                     </span>
                   </>
@@ -195,10 +196,10 @@ export const ProductModal = ({ product, isOpen, onClose }) => {
               </div>
 
               {/* Tabs navigation */}
-              <div className="flex border-b border-slate-800 gap-4 mb-4 text-xs font-semibold">
+              <div className="flex border-b border-slate-800 gap-2 sm:gap-4 mb-3 sm:mb-4 text-xs font-semibold overflow-x-auto no-scrollbar touch-scroll">
                 <button
                   onClick={() => setActiveTab('overview')}
-                  className={`pb-2 transition-colors relative ${
+                  className={`pb-2 transition-colors relative whitespace-nowrap shrink-0 ${
                     activeTab === 'overview' ? 'text-indigo-400 font-bold' : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
@@ -207,7 +208,7 @@ export const ProductModal = ({ product, isOpen, onClose }) => {
                 </button>
                 <button
                   onClick={() => setActiveTab('aiSummary')}
-                  className={`pb-2 transition-colors relative flex items-center gap-1 ${
+                  className={`pb-2 transition-colors relative flex items-center gap-1 whitespace-nowrap shrink-0 ${
                     activeTab === 'aiSummary' ? 'text-purple-400 font-bold' : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
@@ -217,7 +218,7 @@ export const ProductModal = ({ product, isOpen, onClose }) => {
                 </button>
                 <button
                   onClick={() => setActiveTab('specs')}
-                  className={`pb-2 transition-colors relative ${
+                  className={`pb-2 transition-colors relative whitespace-nowrap shrink-0 ${
                     activeTab === 'specs' ? 'text-indigo-400 font-bold' : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
@@ -226,7 +227,7 @@ export const ProductModal = ({ product, isOpen, onClose }) => {
                 </button>
                 <button
                   onClick={() => setActiveTab('reviews')}
-                  className={`pb-2 transition-colors relative ${
+                  className={`pb-2 transition-colors relative whitespace-nowrap shrink-0 ${
                     activeTab === 'reviews' ? 'text-indigo-400 font-bold' : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
@@ -406,21 +407,23 @@ export const ProductModal = ({ product, isOpen, onClose }) => {
             </div>
 
             {/* Bottom Actions: Quantity & Add to Cart */}
-            <div className="pt-4 border-t border-slate-800 flex items-center gap-3">
+            <div className="pt-3 sm:pt-4 border-t border-slate-800 flex items-center gap-2 sm:gap-3">
               {/* Quantity Picker */}
               <div className="flex items-center bg-slate-900 border border-slate-800 rounded-xl p-1 shrink-0">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white"
+                  className="p-1 sm:p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white"
+                  aria-label="Decrease quantity"
                 >
-                  <Minus className="w-3.5 h-3.5" />
+                  <Minus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 </button>
-                <span className="w-8 text-center text-xs font-bold text-white">{quantity}</span>
+                <span className="w-6 sm:w-8 text-center text-xs font-bold text-white">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white"
+                  className="p-1 sm:p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white"
+                  aria-label="Increase quantity"
                 >
-                  <Plus className="w-3.5 h-3.5" />
+                  <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 </button>
               </div>
 
@@ -430,10 +433,10 @@ export const ProductModal = ({ product, isOpen, onClose }) => {
                   addToCart(product, quantity);
                   onClose();
                 }}
-                className="flex-1 gradient-btn py-3.5 rounded-xl text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xl shadow-indigo-600/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                className="flex-1 gradient-btn py-3 sm:py-3.5 rounded-xl text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2 shadow-xl shadow-indigo-600/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
-                <ShoppingBag className="w-4 h-4" />
-                <span>Add {quantity} to Cart • ${(product.price * quantity).toFixed(2)}</span>
+                <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span className="truncate">Add {quantity} • ${(product.price * quantity).toFixed(2)}</span>
               </button>
             </div>
           </div>

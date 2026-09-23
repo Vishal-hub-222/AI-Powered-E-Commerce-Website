@@ -6,7 +6,7 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const { user, openAuthModal } = useAuth();
   const [cartItems, setCartItems] = useState(() => {
-    const saved = localStorage.getItem('auramart_cart');
+    const saved = localStorage.getItem('ai_ecommerce_cart');
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -16,7 +16,7 @@ export const CartProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem('auramart_cart', JSON.stringify(cartItems));
+    localStorage.setItem('ai_ecommerce_cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
   const showToast = (message, type = 'success') => {

@@ -81,7 +81,7 @@ export const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-          <p>© {new Date().getFullYear()} AuraMart AI Inc. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} AI-Powered E-Commerce Website. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <span>Privacy Protocol</span>
             <span>Terms of Service</span>

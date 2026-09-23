@@ -8,14 +8,14 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('auramart_user');
-    const token = localStorage.getItem('auramart_token');
+    const savedUser = localStorage.getItem('ai_ecommerce_user');
+    const token = localStorage.getItem('ai_ecommerce_token');
     if (savedUser && token) {
       try {
         setUser(JSON.parse(savedUser));
       } catch (e) {
-        localStorage.removeItem('auramart_user');
-        localStorage.removeItem('auramart_token');
+        localStorage.removeItem('ai_ecommerce_user');
+        localStorage.removeItem('ai_ecommerce_token');
       }
     }
     setLoading(false);
@@ -25,8 +25,8 @@ export const AuthProvider = ({ children }) => {
     const res = await api.login(email, password);
     if (res.success && res.user) {
       setUser(res.user);
-      localStorage.setItem('auramart_user', JSON.stringify(res.user));
-      localStorage.setItem('auramart_token', res.user.token);
+      localStorage.setItem('ai_ecommerce_user', JSON.stringify(res.user));
+      localStorage.setItem('ai_ecommerce_token', res.user.token);
       return { success: true };
     }
     return { success: false, message: res.message || 'Login failed' };
@@ -36,8 +36,8 @@ export const AuthProvider = ({ children }) => {
     const res = await api.register(name, email, password, role);
     if (res.success && res.user) {
       setUser(res.user);
-      localStorage.setItem('auramart_user', JSON.stringify(res.user));
-      localStorage.setItem('auramart_token', res.user.token);
+      localStorage.setItem('ai_ecommerce_user', JSON.stringify(res.user));
+      localStorage.setItem('ai_ecommerce_token', res.user.token);
       return { success: true };
     }
     return { success: false, message: res.message || 'Registration failed' };
@@ -45,8 +45,8 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('auramart_user');
-    localStorage.removeItem('auramart_token');
+    localStorage.removeItem('ai_ecommerce_user');
+    localStorage.removeItem('ai_ecommerce_token');
   };
 
   const [isAuthOpen, setIsAuthOpen] = useState(false);

@@ -60,7 +60,7 @@ export const CheckoutModal = ({ isOpen, onClose, onOrderSuccess }) => {
           </div>
           <h3 className="text-xl font-bold text-white">Verified Sign In Required</h3>
           <p className="text-xs text-slate-300 leading-relaxed">
-            Only verified registered users can purchase items on AuraMart. Please sign in or create an account to proceed with checkout.
+            Only verified registered users can purchase items on AI-Powered E-Commerce Website. Please sign in or create an account to proceed with checkout.
           </p>
           <button
             onClick={() => {
@@ -132,30 +132,31 @@ export const CheckoutModal = ({ isOpen, onClose, onOrderSuccess }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto animate-fade-in">
-      <div className="relative w-full max-w-3xl glass-panel-glow rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto animate-fade-in">
+      <div className="relative w-full max-w-3xl glass-panel-glow rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl my-2 sm:my-8">
         <button
           onClick={() => {
             setCompletedOrder(null);
             onClose();
           }}
-          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-slate-900 text-slate-400 hover:text-white border border-slate-700"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 p-2 rounded-full bg-slate-900 text-slate-400 hover:text-white border border-slate-700 transition-colors"
+          aria-label="Close modal"
         >
           <X className="w-5 h-5" />
         </button>
 
         {completedOrder ? (
           /* Order Confirmation Screen */
-          <div className="p-8 sm:p-12 text-center space-y-6 max-h-[85vh] overflow-y-auto">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
-              <CheckCircle2 className="w-8 h-8" />
+          <div className="p-5 sm:p-8 md:p-12 text-center space-y-4 sm:space-y-6 max-h-[88vh] overflow-y-auto">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
+              <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8" />
             </div>
 
-            <div className="space-y-2">
-              <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+            <div className="space-y-1.5 sm:space-y-2">
+              <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
                 Payment Confirmed
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-white">
+              <h2 className="text-xl sm:text-3xl font-extrabold font-display text-white">
                 Thank You for Your Order!
               </h2>
               <p className="text-xs sm:text-sm text-slate-400 max-w-md mx-auto">
@@ -164,10 +165,10 @@ export const CheckoutModal = ({ isOpen, onClose, onOrderSuccess }) => {
             </div>
 
             {/* Order Details Card */}
-            <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 text-left max-w-lg mx-auto space-y-3 text-xs">
+            <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/80 border border-slate-800 text-left max-w-lg mx-auto space-y-2.5 sm:space-y-3 text-xs">
               <div className="flex justify-between border-b border-slate-800 pb-2">
                 <span className="text-slate-400">Order ID:</span>
-                <span className="font-mono font-bold text-white">{completedOrder._id}</span>
+                <span className="font-mono font-bold text-white text-[11px] sm:text-xs truncate max-w-[180px]">{completedOrder._id}</span>
               </div>
               <div className="flex justify-between border-b border-slate-800 pb-2">
                 <span className="text-slate-400">Tracking Code:</span>
@@ -185,7 +186,7 @@ export const CheckoutModal = ({ isOpen, onClose, onOrderSuccess }) => {
               </div>
               <div className="flex justify-between pt-1 font-bold text-sm">
                 <span className="text-white">Amount Paid:</span>
-                <span className="text-white font-display">${completedOrder.totalPrice.toFixed(2)}</span>
+                <span className="text-emerald-400 font-display">${completedOrder.totalPrice.toFixed(2)}</span>
               </div>
             </div>
 
@@ -203,17 +204,17 @@ export const CheckoutModal = ({ isOpen, onClose, onOrderSuccess }) => {
           </div>
         ) : (
           /* Checkout Form */
-          <div className="grid grid-cols-1 md:grid-cols-12 max-h-[85vh] overflow-y-auto">
+          <div className="grid grid-cols-1 md:grid-cols-12 max-h-[88vh] overflow-y-auto">
             {/* Left: Shipping & Payment Form */}
-            <form onSubmit={handlePlaceOrder} className="md:col-span-7 p-6 sm:p-8 space-y-5">
+            <form onSubmit={handlePlaceOrder} className="md:col-span-7 p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-5">
               <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <Lock className="w-4 h-4 text-emerald-400" />
-                  <span className="text-xs uppercase font-bold tracking-widest text-emerald-400">
+                <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
+                  <Lock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
+                  <span className="text-[10px] sm:text-xs uppercase font-bold tracking-widest text-emerald-400">
                     256-Bit Encrypted Checkout
                   </span>
                 </div>
-                <h3 className="text-xl font-bold font-display text-white">Shipping & Payment</h3>
+                <h3 className="text-lg sm:text-xl font-bold font-display text-white">Shipping & Payment</h3>
               </div>
 
               {/* Shipping Address */}

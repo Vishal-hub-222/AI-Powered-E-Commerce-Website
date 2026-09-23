@@ -1,7 +1,7 @@
 {
-  "name": "auramart-backend",
+  "name": "ai-powered-ecommerce-backend",
   "version": "1.0.0",
-  "description": "AI-Powered E-Commerce Express Backend with MongoDB Atlas & Cloudinary",
+  "description": "AI-Powered E-Commerce Website — Express Backend with MongoDB Atlas & Cloudinary",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
